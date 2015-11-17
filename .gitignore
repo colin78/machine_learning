@@ -1,0 +1,58 @@
+# History files
+.Rhistory
+.RData
+
+# Example code in package build process
+*-Ex.R
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+
+# OSX files
+.DS_Store
+
+# Temp editing files
+*.swp
+*.*~
+
+#tex files
+*.aux
+*.log
+*.synctex
+hw2_writeup/pset2.pdf
+
+
+*.aux
+*.glo
+*.idx
+*.log
+*.toc
+*.ist
+*.acn
+*.acr
+*.alg
+*.bbl
+*.blg
+*.dvi
+*.glg
+*.gls
+*.ilg
+*.ind
+*.lof
+*.lot
+*.maf
+*.mtc
+*.mtc1
+*.out
+*.synctex.gz
