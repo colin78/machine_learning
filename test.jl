@@ -1,5 +1,7 @@
 using DataFrames
 
+include("mfvb_functions.jl")
+
 X = readtable("data/example_coeff_X.csv")
 X_test = readtable("data/example_coeff_X_test.csv")
 y = readtable("data/example_coeff_y.csv")
