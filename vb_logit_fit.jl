@@ -1,6 +1,6 @@
 using DataFrames
 
-include("/mfvb_functions.jl")
+include("mfvb_functions.jl")
 
 X = array(readtable("data/example_coeff_X.csv"))
 X_test = array(readtable("data/example_coeff_X_test.csv"))
@@ -26,11 +26,13 @@ w = V * t
 bn = b0 + 0.5 * (w' * w + trace(V));
 bn=bn[1]
 L_last = - N * log(2) + 0.5 * (w' * invV * w - logdet(invV)) - an / bn * b0 - an * log(bn) + gammaln_an_an;
+L_last = L_last[1]
 
 #update xi, bn, (V, w) iteratively
 for i = 1:max_iter
     #update xi by EM-algorithm
-    xi = sqrt(sum(X .* (X * (V + w * w')), 2));
+    xi = sqrt(sum(X .* (X * (V + w * w')), 2))
+    xi = convert(Array{Float64,1},xi[:,1])
     lam_xi = lam(xi)
 
     #update posterior parameters of a based on xi
@@ -43,9 +45,10 @@ for i = 1:max_iter
     logdetV = - logdet(invV);
     w = V * t;
 
-    #variational bound, ingnoring constant terms for now
+    #variational bound, ignoring constant terms for now
     L = - sum(log(1 + exp(- xi))) + sum(lam_xi .* xi .^ 2) + 0.5 * (w' * invV * w + logdetV - sum(xi))- E_a * b0 
     - an * log(bn) + gammaln_an_an;
+    L=L[1]
 
      # either stop if variational bound grows or change is < 0.001%
      # HACK ALARM: theoretically, the bound should never grow, and it doing
@@ -58,7 +61,7 @@ for i = 1:max_iter
     L_last = L
 end
 if i == max_iter
-    @printf "Bayes:maxIter', 'Bayesian logistic regression reached maximum number of iterations"
+    println("Bayesian logistic regression reached maximum number of iterations")
 end
 
 #add constant terms to variational bound
