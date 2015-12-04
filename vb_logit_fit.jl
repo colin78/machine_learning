@@ -1,6 +1,6 @@
 using DataFrames
 
-include("mfvb_functions.jl")
+include("/mfvb_functions.jl")
 
 X = array(readtable("data/example_coeff_X.csv"))
 X_test = array(readtable("data/example_coeff_X_test.csv"))
@@ -24,6 +24,7 @@ invV = E_a * eye(D) + 2 * X' *  (X.*lam_xi)
 V = inv(invV)
 w = V * t
 bn = b0 + 0.5 * (w' * w + trace(V));
+bn=bn[1]
 L_last = - N * log(2) + 0.5 * (w' * invV * w - logdet(invV)) - an / bn * b0 - an * log(bn) + gammaln_an_an;
 
 #update xi, bn, (V, w) iteratively
@@ -34,7 +35,7 @@ for i = 1:max_iter
 
     #update posterior parameters of a based on xi
     bn = b0 + 0.5 * (w' * w + trace(V))
-    E_a = an / bn;
+    E_a = an / bn[1];
 
     #recompute posterior parameters of w
     invV = E_a * eye(D) + 2 * X' *  (X.*lam_xi)
