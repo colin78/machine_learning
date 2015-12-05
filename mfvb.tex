@@ -1,2 +1,5 @@
 %!TEX root = paper.tex
 
+\section{Mean-Field Variational Bayes}\label{sec:mfvb}
+
+Mean-field variational Bayes is a method for approximating the posterior distribution.  In general, we have unknown parameters $\theta_1, \theta_2, \ldots, \theta_n$ that we have priors on, and our objective is to find the joint distribution $p(\theta_1, \theta_2, \ldots, \theta_n)$.  Assuming that our approximate distribution is in the family $Q = \{q : q(\theta_1, \theta_2, \ldots, \theta_n) = q(\theta_1)q(\theta_2) \ldots q(\theta_n)\}$, we find $q^* \in Q$ that minimizes the KL-divergence with $p$, i.e. $q^* = \min KL(q || p)$.
