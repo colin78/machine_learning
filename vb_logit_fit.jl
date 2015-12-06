@@ -62,7 +62,7 @@ function vb_logit_fit(X,y)
     #add constant terms to variational bound
     L = L - lgamma(a0) + a0 * log(b0)
 
-    return [w V]
+    return [w V invV]
 end
 
 
