@@ -50,9 +50,9 @@ function vb_logit_fit_iter(X,y)
 	            break
 	        end
 	        L_last = L
-	    end
-	    if i == max_iter
-	        println("Bayesian logistic regression reached maximum number of iterations.")
+	        if i == max_iter
+		        println("Bayesian logistic regression reached maximum number of iterations.")
+		    end
 	    end
 	    
 	    V = V_xi
