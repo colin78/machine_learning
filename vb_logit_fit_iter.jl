@@ -60,6 +60,6 @@ function vb_logit_fit_iter(X,y)
 	    logdetV = logdetV_xi
 	end
 
-	return [w V]
+	return [w V invV]
 end
 
