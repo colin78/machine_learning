@@ -30,8 +30,8 @@ writetable("results/V_iter.csv", V_iter, header=false)
 writetable("results/V.csv", V, header=false)
 
 
-# equation(x1) = (-w_iter[1] - w_iter[2]*x1)/w_iter[3]
-# equation2(x1) = (-w[1] - w[2]*x1)/w[3]
+equation(x1) = (-w_iter[1] - w_iter[2]*x1)/w_iter[3]
+equation2(x1) = (-w[1] - w[2]*x1)/w[3]
 
 # plot1 = plot(layer(X_for_plot, x="x1", y="x2", Geom.point, color = "y"),
 # 			Scale.color_discrete_manual("red","blue"),
