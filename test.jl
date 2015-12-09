@@ -16,8 +16,19 @@ X_for_plot2 = DataFrame(x1=X_test[:,2],x2=X_test[:,3],y=y_test[:])
 
 Matrix_iter = vb_logit_fit_iter(X,y)
 Matrix = vb_logit_fit(X,y)
-w_iter = Matrix_iter[:,1]
-w = Matrix[:,1]
+df_iter = DataFrame(Matrix_iter)
+df = DataFrame(Matrix)
+
+w_iter = DataFrame(w_iter=df_iter[:,1])
+w = DataFrame(w=df[:,1])
+V_iter = df_iter[:,2:4]
+V = df[:,2:4]
+
+writetable("results/w_iter.csv", w_iter, header=false)
+writetable("results/w.csv", w, header=false)
+writetable("results/V_iter.csv", V_iter, header=false)
+writetable("results/V.csv", V, header=false)
+
 
 # equation(x1) = (-w_iter[1] - w_iter[2]*x1)/w_iter[3]
 # equation2(x1) = (-w[1] - w[2]*x1)/w[3]
