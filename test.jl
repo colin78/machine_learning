@@ -1,7 +1,8 @@
 using DataFrames
 using Gadfly
 using Cairo
-
+using Distributions
+srand(1233)
 include("mfvb_functions.jl")
 include("vb_logit_fit.jl")
 include("vb_logit_fit_iter.jl")
