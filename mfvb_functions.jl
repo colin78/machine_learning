@@ -5,10 +5,14 @@ function lam(xi)
 end
 
 function sampling(a0, b0,X)
+	if a0 < 0 || b0 < 0 
+		a0=-a0
+		b0=-b0
+	end
 	N,D=size(X)
-	d1=Gamma(a0, b0)
+	d1=Gamma(a0, 1./b0)
 	alpha=rand(d1)
-	d2=MvNormal(eye(N)./alpha)
+	d2=MvNormal(eye(D)./alpha)
 	w=rand(d2)
 	y=zeros(N,1)
 	for i=1:N
