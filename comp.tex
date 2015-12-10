@@ -6,7 +6,9 @@ We compare the training and test set accuracy for all of the simulated datasets,
 The predictive function for standard logistic regression is simple and the predictive function for MFVB logistic regression has already been discussed in Section~\ref{sec:implement}.  However, the predictive function for MCMC is new, and we will describe here our method.  To predict the label $P(y=1|\M{x})$ for MCMC, we use the predictive function for MFVB logistic regression, except substituting the empirical mean $\M{\bar x}$ and empirical covariance ${\hat \Sigma}$ from the MCMC samples in place of the MFVB mean $\M{w}_N$ and standard deviation $\M{V}_N$.
  
 Overall, we see that MCMC yields the highest out-of-sample accuracy in all cases except for Dataset 9.  (In Dataset 7, no result for
-MCMC was reported because the data was separable.)  Logistic Regression is the second strongest method, and for most datasets logistic regression yields out-of-sample accuracy results matching MCMC.  Here, MFVB performs worse than the other methods, which is expected because MFVB requires the most restrictive set of assumptions: namely that the joint distribution factorizes into independent marginals.  Because MFVB is an approximate method, it much runs faster than MCMC, but as a result may sacrifice some predictive power.  For larger problems with many observations $n$ and high-dimension $p$, this tradeoff between computational complexity and performance may become more severe.  
+MCMC was reported because the data was separable.)  Logistic Regression is the second strongest method, and for most datasets logistic regression yields out-of-sample accuracy results matching MCMC.  Here, MFVB performs worse than the other methods, which is expected because MFVB requires the most restrictive set of assumptions: namely that the joint distribution factorizes into independent marginals.  Because MFVB is an approximate method, it much runs faster than MCMC, but as a result may sacrifice some predictive power.  For larger problems with many observations $n$ and high-dimension $p$, this tradeoff between computational complexity and performance may become more significant.  
+
+Since the datasets are in 2-dimensions, we also present the 
 
 
 \input{results/all_accuracy}
@@ -20,7 +22,7 @@ MCMC was reported because the data was separable.)  Logistic Regression is the s
     \begin{subfigure}[b]{0.45\textwidth}
 	\includegraphics[scale=0.6]{figures/test_final_0.pdf}
 	\end{subfigure}
-    \caption{Plots of decision boundaries from Dataset 0.}  \label{fig:dataset_0}  
+ \caption{Dataset 0 decision boundary plots. {\bf MCMC:}  {\bf \color{ao(english)} Green}, {\bf Log Reg:} {\bf \color{black} Black}, {\bf MFVB:}  {\bf \color{burntorange} Orange}.}  \label{fig:dataset_0}  
 \end{figure}
 \begin{figure}[h!]
 \centering
@@ -31,7 +33,7 @@ MCMC was reported because the data was separable.)  Logistic Regression is the s
     \begin{subfigure}[b]{0.45\textwidth}
 	\includegraphics[scale=0.6]{figures/test_final_1.pdf}
 	\end{subfigure}
-    \caption{Plots of decision boundaries from Dataset 1.}  \label{fig:dataset_1}  
+    \caption{Dataset 1 decision boundary plots. {\bf MCMC:}  {\bf \color{ao(english)} Green}, {\bf Log Reg:} {\bf \color{black} Black},  {\bf MFVB:}  {\bf \color{burntorange} Orange}.}  \label{fig:dataset_1}  
 \end{figure}
 \begin{figure}[h!]
 \centering
@@ -42,7 +44,7 @@ MCMC was reported because the data was separable.)  Logistic Regression is the s
     \begin{subfigure}[b]{0.45\textwidth}
 	\includegraphics[scale=0.6]{figures/test_final_3.pdf}
 	\end{subfigure}
-    \caption{Plots of decision boundaries from Dataset 3.}  \label{fig:dataset_3}  
+ \caption{Dataset 3 decision boundary plots. {\bf MCMC:}  {\bf \color{ao(english)} Green}, {\bf Log Reg:} {\bf \color{black} Black}, {\bf MFVB:}  {\bf \color{burntorange} Orange}.}  \label{fig:dataset_3}  
 \end{figure}
 \begin{figure}[h!]
 \centering
@@ -53,7 +55,7 @@ MCMC was reported because the data was separable.)  Logistic Regression is the s
     \begin{subfigure}[b]{0.45\textwidth}
 	\includegraphics[scale=0.6]{figures/test_final_5.pdf}
 	\end{subfigure}
-    \caption{Plots of decision boundaries from Dataset 5.}  \label{fig:dataset_5}  
+ \caption{Dataset 5 decision boundary plots.  {\bf MCMC:}  {\bf \color{ao(english)} Green}, {\bf Log Reg:} {\bf \color{black} Black}, {\bf MFVB:}  {\bf \color{burntorange} Orange}.}  \label{fig:dataset_5}  
 \end{figure}
 \begin{figure}[h!]
 \centering
@@ -64,7 +66,7 @@ MCMC was reported because the data was separable.)  Logistic Regression is the s
     \begin{subfigure}[b]{0.45\textwidth}
 	\includegraphics[scale=0.6]{figures/test_final_7.pdf}
 	\end{subfigure}
-    \caption{Plots of decision boundaries from Dataset 7.}  \label{fig:dataset_7}  
+ \caption{Dataset 7 decision boundary plots. {\bf MCMC:}  {\bf \color{ao(english)} Green}, {\bf Log Reg:} {\bf \color{black} Black}, {\bf MFVB:}  {\bf \color{burntorange} Orange}.}  \label{fig:dataset_7}  
 \end{figure}
 \begin{figure}[h!]
 \centering
@@ -75,5 +77,5 @@ MCMC was reported because the data was separable.)  Logistic Regression is the s
     \begin{subfigure}[b]{0.45\textwidth}
 	\includegraphics[scale=0.6]{figures/test_final_9.pdf}
 	\end{subfigure}
-    \caption{Plots of decision boundaries from Dataset 9.}  \label{fig:dataset_9}  
+ \caption{Dataset 9 decision boundary plots. {\bf MCMC:}  {\bf \color{ao(english)} Green}, {\bf Log Reg:} {\bf \color{black} Black}, {\bf MFVB:}  {\bf \color{burntorange} Orange}.}  \label{fig:dataset_9}  
 \end{figure}
