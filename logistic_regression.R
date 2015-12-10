@@ -2,6 +2,7 @@ source("data.R")
 
 logReg = glm(y ~ x1 + x2, data = train, family = binomial)
 summary(logReg)
+w_logReg = coef(logReg)
 
 # Compute predicted probabilities on training data
 logPred = predict(logReg, type = "response")
