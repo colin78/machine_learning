@@ -29,13 +29,57 @@ To every training set observation $(x_n, y_n)$, there is a variational parameter
 p( Y | X, w)=\prod_{i=1}^{N} p(y_i | x_i, w) = \prod_{i=1}^{N} \sigma(y w^T x)
 \end{equation}
 
-and thus we obtain the following bound on the joint distribution on $y$ and $w$, assuming a prior $p(w)$ on $w$:
+and thus we obtain the following bound on the marginal data likelihood :
 \begin{equation}
-p( Y , w | X)=p( Y | X, w)p(w) \geq h(w, \xi)p(w)
+p( Y | X, w) \geq h(w, \xi)
 \end{equation}
-and $h(w,\xi) = \prod_{i=1}^{N} e^{y_iw^T x_i} \sigma(\xi_i)\exp\{-(\xi_i+w^T x_i)/2-\lambda(\xi_i)((w^T x_i)^2-{\xi_i}^2)\}$
+and 
+$$h(w,\xi) = \prod_{i=1}^{N} e^{y_iw^T x_i} \sigma(\xi_i)\exp\{-(\xi_i+w^T x_i)/2-\lambda(\xi_i)((w^T x_i)^2-{\xi_i}^2)\}$$
+
+This approximation is used because the sigmoid data likelihood does not have a conjugate in the exponential family of priors. The approximation we yielded is quadratic in $w$ in the exponential, and we use the conjugate gaussian prior :
+\begin{equation}
+p( w | \alpha) = \mathcal{N}(0, \alpha ^{-1} \mathcal{I})
+\end{equation}
+and we can also model the hyper-parameter $\alpha$ with a conjugate Gamma distribution : 
+\begin{equation}
+p(\alpha) = Gam( \alpha | a_0, b_0)
+\end{equation}
+
+Variational Bayesian inference aims at maximizing a lower bound of the data log-likelihood. The log-likelihood is
+\begin{equation}
+\ln p(Y| X)=\ln \int\int p(Y| X, w) p(w |\alpha)p(\alpha)dw d\alpha
+\end{equation}
+
+We approximate the posterior $p(w, \alpha | X)$ by the variational distribution $Q(w, \alpha)$ that can be factorized to $Q(\alpha)Q(w)$. The bound of the log-likelihood is as follows : 
+\begin{equation}
+\ln p(Y| X) \geq \mathcal{L}(Q)=\ln \int\int Q(w, \alpha) \ln \dfrac{p(Y| X, w) p(w |\alpha)p(\alpha)}{Q(w,\alpha)}dw d\alpha
+\end{equation}
+
+Hence, using Equation (5), obtain a variational bound $ \mathcal{\tilde{L}}(Q, \xi) $  that we aim at maximizing:
+\begin{equation}
+\mathcal{\tilde{L}}(Q, \xi)=\int\int Q(w, \alpha) \ln \dfrac{h(w,\xi) p(w |\alpha)p(\alpha)}{Q(w,\alpha)}dw d\alpha
+\end{equation}
+
+After we substitute $Q(w, \alpha)$ with $Q(\alpha)Q(w)$ and we calculate the expectations of 
+$alpha$ and $w$ as in the general MFVB, we obtain this expression of  $ \mathcal{\tilde{L}}(Q, \xi) $: 
+\begin{equation}
+\mathcal{\tilde{L}}(Q, \xi)=\frac{1}{2}w_N^T V_N^{-1} w_N + \frac{1}{2} \ln |V_N| + \sum_{n} \left( \ln \sigma(\xi_n) - \frac{\xi_n}{2} + \lambda(\xi_n)\xi_n^2\right)-\ln \Gamma(a_0) +a_0 \ln(b_0)-b_0\frac{a_N}{b_N}-a_N \ln(b_N)-\ln \Gamma(a_N) +a_N
+\end{equation}
+with 
+$$a_N=a_0 +\frac{D}{2} $$
+$$b_N=b_0+\frac{1}{2}w_N^T w_N +Tr(V_N)$$
+$$V_N^{-1}=\frac{a_N}{b_N} \mathcal{I} +2 \sum_{n} \lambda(\xi_n)x_n x_n^T$$
+$$w_N=V_N \sum_{n}\frac{y_n}{2}x_n $$
+
+and 
+$$Q ^ *(w)=\mathcal{N}(w | w_N, V_N)$$ 
+$$Q^ *(\alpha)=Gam(\alpha | a_N, b_N)$$
+This bound depends on $\xi$. We maximize this bound with respect to $\xi$ and we find : 
+\begin{equation}
+(\xi_n^{new})^2=x_n^T (V_N +w_Nw_N ^T) x_N
+\end{equation}
 
 
-However, the variational Bayes approximation is known to underestimate the covariance matrix of the posterior distribution, and this estimate can be made arbitrarily bad for simulated examples with 2 or more dimensions [1].
+We use the EM algorithm to update the equations for $ w_N , V_N, a_N, b_N, \text{and}  \xi $ in order to maximize the variational bound $\mathcal{\tilde{L}}(Q, \xi)$ , until it reaches a plateau. 
 
 

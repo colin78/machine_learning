@@ -8,7 +8,7 @@ The predictive function for standard logistic regression is simple and the predi
 Overall, we see that MCMC yields the highest out-of-sample accuracy in all cases except for Dataset 9.  (In Dataset 7, no result for
 MCMC was reported because the data was separable.)  Logistic Regression is the second strongest method, and for most datasets logistic regression yields out-of-sample accuracy results matching MCMC.  Here, MFVB performs worse than the other methods, which is expected because MFVB requires the most restrictive set of assumptions: namely that the joint distribution factorizes into independent marginals.  Because MFVB is an approximate method, it much runs faster than MCMC, but as a result may sacrifice some predictive power.  For larger problems with many observations $n$ and high-dimension $p$, this tradeoff between computational complexity and performance may become more significant.  
 
-Since the datasets are in 2-dimensions, we also present the 
+Since the datasets are in 2-dimensions, we also present the decision boundaries for logistic regression, MCMC, and MFVB for selected datasets in Figures~\ref{fig:dataset_0}-\ref{fig:dataset_9}.  We note that for many datasets, the decision boundaries are nearly identical for MCMC and standard logistic regression, while MFVB tends to be different from the other two.  
 
 
 \input{results/all_accuracy}
