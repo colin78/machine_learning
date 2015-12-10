@@ -40,12 +40,12 @@ for(i in 0:10)
   logit_test_acc[i+1] = sum(diag(test.table))/nrow(test)
   
   # Run MCMC on dataset
-  posterior = MCMClogit(y ~ x1 + x2, data = train, seed=0)
-  w_mcmc = colMeans(posterior)[]
-  V_mcmc = cov(posterior)
-  colnames(V_mcmc) = c("x1","x2","x3")
-  write.csv(as.matrix(w_mcmc), paste("results/w_mcmc_",i,".csv",sep=""), row.names=FALSE)
-  write.csv(as.matrix(V_mcmc), paste("results/V_mcmc_",i,".csv",sep=""), row.names=FALSE)
+#   posterior = MCMClogit(y ~ x1 + x2, data = train, seed=0)
+#   w_mcmc = colMeans(posterior)[]
+#   V_mcmc = cov(posterior)
+#   colnames(V_mcmc) = c("x1","x2","x3")
+#   write.csv(as.matrix(w_mcmc), paste("results/w_mcmc_",i,".csv",sep=""), row.names=FALSE)
+#   write.csv(as.matrix(V_mcmc), paste("results/V_mcmc_",i,".csv",sep=""), row.names=FALSE)
 }
 
 df = data.frame(Dataset=c(0:10),logit_train=logit_train_acc, logit_test=logit_test_acc)
