@@ -1,5 +1,6 @@
 \documentclass[twoside,11pt]{article}
 \usepackage{amssymb,amsmath, amsfonts,latexsym,mathtext, array, graphicx, geometry, caption, subcaption, Booktabs}
+\usepackage{natbib}
 \geometry{margin=1.5cm}
 \setlength{\parskip}{0.8ex plus 0.1ex minus 0.2ex}
 \newcommand{\M}[1]{\boldsymbol{\mathbf{#1}}}
@@ -18,6 +19,10 @@
 \input{mfvb}
 \input{implementation}
 \input{mcmc}
+\include{comp}
 \input{future}
 
+\bibliographystyle{unsrt}
+
+\bibliography{ref}
 \end{document}
