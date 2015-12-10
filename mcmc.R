@@ -43,10 +43,12 @@ summary(posterior)
 
 g = ggplot(data=indep, aes(x=x1, y=x2)) + geom_point() +
   theme(text=element_text(size=textsize, family="CM Sans")) + 
-  xlab(expression(w[1])) + ylab(expression(w[2]))
+  xlab(expression(w[1])) + ylab(expression(w[2])) +
+  theme(panel.background = element_rect(fill = 'white')) +
+  ggtitle("Kernel Density Plot of MCMC:\n Dataset 1")
 g = g + geom_density2d()
 g
-ggsave("figures/mcmc_uniform_2d.pdf", g, width=8, height=5)
+ggsave("figures/mcmc_uniform_2d.pdf", g, width=8, height=6)
 
 mu = w[2:3,]
 sigma = as.matrix(V[2:3,2:3])
@@ -92,9 +94,9 @@ g = g + geom_path(data=dat, aes(x=X1, y=X2, colour='MFVB')) +
   scale_colour_manual("Contour", values = c("MFVB" = "red", "MCMC"="blue", 
                                             "Log_Reg" = "black")) +
   theme(panel.background = element_rect(fill = 'white')) +
-  ggtitle(expression("Contour Plot of" w[1], w[2] "for Dataset 1")
+  ggtitle("Contour Plot of Logistic Regression Weights:\n Dataset 1")
 g
-ggsave("figures/mcmc_uniform_mfvb.pdf", g, width=8, height=5)
+ggsave("figures/mcmc_uniform_mfvb.pdf", g, width=8, height=6)
 
 # rng   <- 15
 # N     <- 50
