@@ -22,6 +22,7 @@ for(i in 0:10)
   logReg = glm(y ~ x1 + x2, data = train, family = binomial)
   summary(logReg)
   w_logReg = coef(logReg)
+  write.csv(as.matrix(w_logReg), paste("results/w_logit_",i,".csv",sep=""), row.names=FALSE)
   
   # Compute predicted probabilities on training data
   logPred = predict(logReg, type = "response")
@@ -48,11 +49,11 @@ for(i in 0:10)
 #   write.csv(as.matrix(V_mcmc), paste("results/V_mcmc_",i,".csv",sep=""), row.names=FALSE)
 }
 
-df = data.frame(Dataset=c(0:10),logit_train=logit_train_acc, logit_test=logit_test_acc)
-write.csv(df, "results/accuracy_logit.csv")
-df2 = read.csv("results/accuracy_MCMC.csv", header=FALSE)
-colnames(df2) = c("MCMC_train","MCMC_test")
-df3 = read.csv("results/accuracy_MFVB.csv", header=FALSE)
-colnames(df3) = c("MFVB_train","MFVB_test")
+# df = data.frame(Dataset=c(0:10),logit_train=logit_train_acc, logit_test=logit_test_acc)
+# write.csv(df, "results/accuracy_logit.csv")
+# df2 = read.csv("results/accuracy_MCMC.csv", header=FALSE)
+# colnames(df2) = c("MCMC_train","MCMC_test")
+# df3 = read.csv("results/accuracy_MFVB.csv", header=FALSE)
+# colnames(df3) = c("MFVB_train","MFVB_test")
 
-write.csv(cbind(df,df2,df3),"results/all_accuracy.csv", row.names=FALSE)
+# write.csv(cbind(df,df2,df3),"results/all_accuracy.csv", row.names=FALSE)
