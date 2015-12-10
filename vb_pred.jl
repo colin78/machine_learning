@@ -1,5 +1,5 @@
 include("mfvb_functions.jl")
-function vb_logit_post(X, w, V, invV)
+function vb_pred(X, w, V, invV)
     #out = vb_logit_post(X, w, V, invV)
     #returns a vector containing
 
