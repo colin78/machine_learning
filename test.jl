@@ -24,12 +24,13 @@ w_iter = DataFrame(w_iter=df_iter[:,1])
 w = DataFrame(w=df[:,1])
 V_iter = df_iter[:,2:4]
 V = df[:,2:4]
+invV_0 = df[:,5:7]
 
 writetable("results/w_iter.csv", w_iter, header=false)
 writetable("results/w.csv", w, header=false)
 writetable("results/V_iter.csv", V_iter, header=false)
 writetable("results/V.csv", V, header=false)
-
+writetable("results/invV_0.csv", invV_0, header=false)
 
 equation(x1) = (-w_iter[1] - w_iter[2]*x1)/w_iter[3]
 equation2(x1) = (-w[1] - w[2]*x1)/w[3]
