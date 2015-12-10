@@ -2,4 +2,40 @@
 
 \section{Mean-Field Variational Bayes}\label{sec:mfvb}
 
-Mean-field variational Bayes is a method for approximating the posterior distribution.  In general, we have unknown parameters $\theta_1, \theta_2, \ldots, \theta_n$ that we have priors on, and our objective is to find the joint distribution $p(\theta_1, \theta_2, \ldots, \theta_n)$.  Assuming that our approximate distribution is in the family $Q = \{q : q(\theta_1, \theta_2, \ldots, \theta_n) = q(\theta_1)q(\theta_2) \ldots q(\theta_n)\}$, we find $q^* \in Q$ that minimizes the KL-divergence with $p$, i.e. $q^* = \min KL(q || p)$.
+Mean-field variational Bayes (MFVB) is a method for approximating the posterior distribution.  In general, we have unknown parameters $w_1, w_2, \ldots, w_n$ that we have priors on, and our objective is to find the joint distribution $p(w_1, w_2, \ldots, w_n)$.  Assuming that our approximate distribution is in the family $Q = \{q : q(w_1, w_2, \ldots, w_n) = q(w_1)q(w_2) \ldots q(w_n)\}$, we find $q^* \in Q$ that minimizes the KL-divergence with $p$, i.e. $q^* = \min KL(q || p)$. 
+In particular, for logistic regression, the analytical form of the posterior is unknown and has been approximated with MFVB in the literature [2]. We use local variational bounds on the conditional probability using the convexity of the logarithm function. In particular, we use a variational treatment based on the approach of Jaakkola and Jordan (2000). 
+This approach consists of approximation the likelihood function of the logistic regression, governed by the sigmoid function, by the exponential of the a quadratic form, leading to a gaussian approximation of the posterior distribution. More explicitly, if $y\in \{-1,1\}$ is a target variable for a data vector $x$ then the likelihood function of the target variable $y$ is : 
+\begin{equation}
+p(y | x, w)=\sigma(y w^T x)
+\end{equation}
+
+with $w$ being the logistic regression weight, and $\sigma(x)=\dfrac{1}{1+\exp(-x)}$ the sigmoid function. 
+Using a transformation of a the logarithm of the sigmoid and the concept of convex duality, we get : 
+\begin{equation}
+\sigma(x) \geq \sigma(\xi)\exp((x-\xi)/2-\lambda(\xi)(x^2-\xi^2))
+\end{equation}
+
+where
+$$\lambda(\xi)=\frac{1}{2\xi}[\sigma(\xi)-\frac{1}{2}]=\frac{1}{4\xi}\tanh(\frac{\xi}{2})$$
+and $\xi$ is a variational parameter. 
+
+Therefore, if we let $a=w^T x$ we get: 
+\begin{equation}
+p( y | x,w)\geq e^{ya} \sigma(\xi)\exp\{-(\xi+a)/2-\lambda(\xi)(a^2-\xi^2)\}
+\end{equation}
+
+To every training set observation $(x_n, y_n)$, there is a variational parameter $\xi_n$ associated. We apply the bound above to each of the terms in the likelihood function. Let $Y=[y_1, y_2, \ldots , y_n]^T$ and the $X$ be the data matrix, then the likelihood function is: 
+\begin{equation}
+p( Y | X, w)=\prod_{i=1}^{N} p(y_i | x_i, w) = \prod_{i=1}^{N} \sigma(y w^T x)
+\end{equation}
+
+and thus we obtain the following bound on the joint distribution on $y$ and $w$, assuming a prior $p(w)$ on $w$:
+\begin{equation}
+p( Y , w | X)=p( Y | X, w)p(w) \geq h(w, \xi)p(w)
+\end{equation}
+and $h(w,\xi) = \prod_{i=1}^{N} e^{y_iw^T x_i} \sigma(\xi_i)\exp\{-(\xi_i+w^T x_i)/2-\lambda(\xi_i)((w^T x_i)^2-{\xi_i}^2)\}$
+
+
+However, the variational Bayes approximation is known to underestimate the covariance matrix of the posterior distribution, and this estimate can be made arbitrarily bad for simulated examples with 2 or more dimensions [1].
+
+

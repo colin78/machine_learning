@@ -1,3 +1,7 @@
 %!TEX root = paper.tex
 
 \section{Introduction}\label{sec:intro}
+We will first code this project in Julia. Paper [2] provides a walkthrough of MFVB applied to logistic regression, and sample MATLAB code is available on Github.  Paper [1] includes a description of computational experiments with LRVB applied to a Normal-Poisson model, a linear random effects model, a multivariate normal mixture model, and the MNIST classification problem using a clustering approach.  In addition, we have access to a large subset of classification problems from the UCI Machine Learning Repository (75 total), which have been pre-processed and do not require data cleaning.  
+For this project, we will focus on the mathematical derivation of LRVB for logistic regression and its implementation on small-scale problems and simulated datasets. In addition, if we observe significant differences using the out-of-sample accuracy measure on these small-scale problems, then we can easily scale to run our methods on these 75 datasets.  \\
+
+A recent paper by Giordano, Broderick and Jordan (2015) proposes a linear correction term derived analytically to improve the covariance estimate for MFVB.  The new proposed method is called Linear Response Variational Bayes (LRVB).  Here, we consider applying this new method on logistic regression and compare its performance to the benchmark of MFVB and regular logistic regression.
