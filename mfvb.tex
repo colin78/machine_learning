@@ -3,14 +3,14 @@
 \section{Mean-Field Variational Bayes}\label{sec:mfvb}
 
 Mean-field variational Bayes (MFVB) is a method for approximating the posterior distribution.  In general, we have unknown parameters $w_1, w_2, \ldots, w_n$ that we have priors on, and our objective is to find the joint distribution $p(w_1, w_2, \ldots, w_n)$.  Assuming that our approximate distribution is in the family $Q = \{q : q(w_1, w_2, \ldots, w_n) = q(w_1)q(w_2) \ldots q(w_n)\}$, we find $q^* \in Q$ that minimizes the KL-divergence with $p$, i.e. $q^* = \min KL(q || p)$. 
-In particular, for logistic regression, the analytical form of the posterior is unknown and has been approximated with MFVB in the literature [2]. We use local variational bounds on the conditional probability using the convexity of the logarithm function. In particular, we use a variational treatment based on the approach of Jaakkola and Jordan (2000). 
-This approach consists of approximation the likelihood function of the logistic regression, governed by the sigmoid function, by the exponential of the a quadratic form, leading to a gaussian approximation of the posterior distribution. More explicitly, if $y\in \{-1,1\}$ is a target variable for a data vector $x$ then the likelihood function of the target variable $y$ is: 
+In particular, for logistic regression, the analytical form of the posterior is unknown and has been approximated with MFVB in the literature. We use local variational bounds on the conditional probability using the convexity of the logarithm function. In particular, we use a variational treatment based on the approach of Jaakkola and Jordan (2000). 
+This approach consists of approximating the likelihood function of the logistic regression, governed by the sigmoid function, by the exponential of the a quadratic form, leading to a gaussian approximation of the posterior distribution. More explicitly, if $y\in \{-1,1\}$ is a target variable for a data vector $x$ then the likelihood function of the target variable $y$ is: 
 \begin{equation}
 p(y | x, w)=\sigma(y w^T x)
 \end{equation}
 
 with $w$ being the logistic regression weight, and $\sigma(x)=\dfrac{1}{1+\exp(-x)}$ the sigmoid function. 
-Using a transformation of a the logarithm of the sigmoid and the concept of convex duality, we get: 
+Using a transformation of the logarithm of the sigmoid and the concept of convex duality, we get: 
 \begin{equation}
 \sigma(x) \geq \sigma(\xi)\exp((x-\xi)/2-\lambda(\xi)(x^2-\xi^2))
 \end{equation}
@@ -36,7 +36,7 @@ p( Y | X, w) \geq h(w, \xi)
 and 
 $$h(w,\xi) = \prod_{i=1}^{N} e^{y_iw^T x_i} \sigma(\xi_i)\exp\{-(\xi_i+w^T x_i)/2-\lambda(\xi_i)((w^T x_i)^2-{\xi_i}^2)\}$$
 
-This approximation is used because the sigmoid data likelihood does not have a conjugate in the exponential family of priors. The approximation we yielded is quadratic in $w$ in the exponential, and we use the conjugate gaussian prior:
+This approximation is used because the sigmoid data likelihood does not have a conjugate in the exponential family of priors. The approximation we obtain is quadratic in $w$ in the exponential, and we use the conjugate gaussian prior:
 \begin{equation}
 p( w | \alpha) = \mathcal{N}(0, \alpha ^{-1} \mathcal{I})
 \end{equation}
@@ -55,7 +55,7 @@ We approximate the posterior $p(w, \alpha | X)$ by the variational distribution 
 \ln p(Y| X) \geq \mathcal{L}(Q)=\ln \int\int Q(w, \alpha) \ln \dfrac{p(Y| X, w) p(w |\alpha)p(\alpha)}{Q(w,\alpha)}dw d\alpha
 \end{equation}
 
-Hence, using Equation (5), obtain a variational bound $ \mathcal{\tilde{L}}(Q, \xi) $  that we aim at maximizing:
+Hence, using Equation (5), we obtain a variational bound $ \mathcal{\tilde{L}}(Q, \xi) $ that we aim at maximizing:
 \begin{equation}
 \mathcal{\tilde{L}}(Q, \xi)=\int\int Q(w, \alpha) \ln \dfrac{h(w,\xi) p(w |\alpha)p(\alpha)}{Q(w,\alpha)}dw d\alpha
 \end{equation}

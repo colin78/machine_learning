@@ -3,7 +3,7 @@
 \section{Implementation}\label{sec:implement}
 
 \subsection{MFVB Logistic Regression}
-We wrote a batch implementation of function that computes the variational posterior parameters $w, V, V^{-1}$ by updating all of the $\xi_n$'s at once. Its input were the hyper-priors $a_0, b_0$. The values we took are $10^{-2}$ and $10^{-4}$ respectively.
+We wrote a batch implementation of a function that computes the variational posterior parameters $w, V, V^{-1}$ by updating all of the $\xi_n$'s at once. The inputs were the hyper-priors $a_0, b_0$, which we set to be $10^{-2}$ and $10^{-4}$ respectively.
 
 \subsection{Simulated Datasets}
 To have different datasets, we used a fixed data vector matrix $\M{X}$ and we took 10 random values of $a_0$ and $ b_0$ each, from which we sampled the label vectors $\M{y}$ using the prior and hyperprior distributions listed in the MFVB section. We thus had 10 different datasets, in the sense that every dataset had different labels for the points $\M{X}$. 
