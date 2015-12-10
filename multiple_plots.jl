@@ -18,19 +18,21 @@ for i=0:10
 	equation_logit(x1) = (-w_logit[1] - w_logit[2]*x1)/w_logit[3]
 
 	X_for_plot = DataFrame(x1=X[:,2],x2=X[:,3],y=y[:])
-	X_for_plot_test = DataFrame(x1=X_test[:,2],x2=X_test[:,3],y=y_test[:])
+	X_for_plot_test = DataFrame(x1=X_test[:,2],x2=X_test[:,3],y_test=y_test[:])
 
 	plot1 = plot(layer(X_for_plot, x="x1", y="x2", Geom.point, color = "y"),
 				Scale.color_discrete_manual("red","blue"),
 				layer(equation_mfvb, -3, 3, Theme(default_color=color("orange"))),
 				layer(equation_mcmc, -3, 3, Theme(default_color=color("green"))),
-				layer(equation_logit, -3, 3, Theme(default_color=color("black"))));
+				layer(equation_logit, -3, 3, Theme(default_color=color("black"))),
+				Guide.title("Dataset #$i Training"));
 	draw(PDF("figures/train_final_$i.pdf", 6inch, 4inch), plot1)
 
 	plot_test = plot(layer(X_for_plot_test, x="x1", y="x2", Geom.point, color = "y_test"),
 				Scale.color_discrete_manual("red","blue"),
 				layer(equation_mfvb, -3, 3, Theme(default_color=color("orange"))),
 				layer(equation_mcmc, -3, 3, Theme(default_color=color("green"))),
-				layer(equation_logit, -3, 3, Theme(default_color=color("black"))));
+				layer(equation_logit, -3, 3, Theme(default_color=color("black"))),
+				Guide.title("Dataset #$i Testing"));
 	draw(PDF("figures/test_final_$i.pdf", 6inch, 4inch), plot_test)
 end
