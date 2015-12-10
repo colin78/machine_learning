@@ -9,7 +9,7 @@ logPred = predict(logReg, type = "response")
 
 # Build a classification table to check accuracy on 
 # training set. 
-table(train$y, round(logPred))
+train.table = table(train$y, round(logPred))
 
 # We now do the same for the test set
 logPredTest = predict(logReg, newdata = test, type = "response")

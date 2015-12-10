@@ -1,3 +1,6 @@
 include("csv2table.jl")
 
-maketable("results\\V","ccc","V1 & V2 & V3","label","caption3")
+maketable("results\\all_accuracy","rcccccc","Dataset & Logit Train & Logit Test & MCMC Train & MCMC Test & MFVB Train & MFVB Test",
+  "all_acc","Training and test set accuracy for logistic regression, MCMC logistic regression, and MFVB logistic regression on all datasets.",
+  headerPresent=true)
+

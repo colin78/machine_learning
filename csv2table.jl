@@ -30,8 +30,8 @@ function df_to_table(df::DataFrame, format, header, label, caption,
 end
 
 # Example: maketable("results\\V","ccc","V1 & V2 & V3","label","caption3")
-function maketable(filename, format, header, label, caption, position="tb")
-  df = readtable("$filename.csv", header=false)
+function maketable(filename, format, header, label, caption; position="tb", headerPresent=false)
+  df = readtable("$filename.csv", header=headerPresent)
   # Convert all numbers to 4dp precision (except non-zero ints)
   for i in 1:length(df)
     df[i] = map(format_cell, df[i])
