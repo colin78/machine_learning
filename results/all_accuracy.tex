@@ -4,18 +4,18 @@
   \toprule
  {\bf  Dataset} & {\bf  Logit Train} & {\bf  Logit Test} & {\bf  MCMC Train} & {\bf  MCMC Test} & {\bf  MFVB Train} & {\bf  MFVB Test}\\
   \midrule
-  0 & 0.8700 & 0.8580 & 0.8700 & 0.8580 & 0.8600 & 0.8570 \\
-  1 & 0.7500 & 0.8450 & 0.7500 & 0.8460 & 0.7400 & 0.8450 \\
-  2 & 0.5500 & 0.4890 & 0.5100 & 0.4890 & 0.5400 & 0.4750 \\
-  3 & 0.6900 & 0.7420 & 0.6900 & 0.7420 & 0.7200 & 0.7120 \\
-  4 & 0.8600 & 0.8050 & 0.8600 & 0.8050 & 0.8600 & 0.8040 \\
-  5 & 0.9400 & 0.9290 & 0.9400 & 0.9300 & 0.9400 & 0.9260 \\
-  6 & 0.7400 & 0.7130 & 0.7400 & 0.7140 & 0.6900 & 0.6840 \\
-  7 & 1.0000 & 0.9760 & 0.0000 & 0.0000 & 1.0000 & 0.9780 \\
-  8 & 0.9200 & 0.8670 & 0.9200 & 0.8670 & 0.9300 & 0.8640 \\
-  9 & 0.5200 & 0.3980 & 0.5100 & 0.4020 & 0.4600 & 0.4130 \\
-  10 & 0.6700 & 0.6690 & 0.6700 & 0.6700 & 0.6300 & 0.6560 \\
+  0 & 0.8700 & {\bf 0.8580} & 0.8700 & {\bf 0.8580} & 0.8600 & 0.8570 \\
+  1 & 0.7500 & 0.8450 & 0.7500 & {\bf 0.8460} & 0.7400 & 0.8450 \\
+  2 & 0.5500 & {\bf 0.4890} & 0.5100 & {\bf 0.4890} & 0.5400 & 0.4750 \\
+  3 & 0.6900 & {\bf 0.7420} & 0.6900 & {\bf 0.7420} & 0.7200 & 0.7120 \\
+  4 & 0.8600 & {\bf 0.8050} & 0.8600 & {\bf 0.8050} & 0.8600 & 0.8040 \\
+  5 & 0.9400 & 0.9290 & 0.9400 & {\bf 0.9300} & 0.9400 & 0.9260 \\
+  6 & 0.7400 & 0.7130 & 0.7400 & {\bf 0.7140} & 0.6900 & 0.6840 \\
+  7 & 1.0000 & 0.9760 & 1.0000 & *** & 1.0000 & {\bf 0.9780} \\
+  8 & 0.9200 & {\bf 0.8670} & 0.9200 & {\bf 0.8670} & 0.9300 & 0.8640 \\
+  9 & 0.5200 & 0.3980 & 0.5100 & 0.4020 & 0.4600 & {\bf 0.4130} \\
+  10 & 0.6700 & 0.6690 & 0.6700 & {\bf 0.6700} & 0.6300 & 0.6560 \\
   \bottomrule
 \end{tabular}
-\caption{Training and test set accuracy for logistic regression, MCMC logistic regression, and MFVB logistic regression on all datasets.}\label{tab:all_acc}
+\caption{Training and test set accuracy for logistic regression, MCMC logistic regression, and MFVB logistic regression on all datasets.  The highest out-of-sample accuracy score is highlighted for each dataset.  \\ *** : The training dataset was completely separable; therefore the posterior covariance matrix was zero and the precision matrix was undefined.  Thus, we did not obtain MCMC predictive probabilities for this dataset. }\label{tab:all_acc}
 \end{table}
